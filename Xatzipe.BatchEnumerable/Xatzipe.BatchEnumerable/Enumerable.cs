@@ -10,7 +10,7 @@ namespace Xatzipe.BatchEnumerable
     /// <summary>
     /// IEnumerable extension to iterate in batches
     /// </summary>
-    public static class BatchEnumerableExtensions
+    public static class Enumerable
     {
 
         /// <summary>
