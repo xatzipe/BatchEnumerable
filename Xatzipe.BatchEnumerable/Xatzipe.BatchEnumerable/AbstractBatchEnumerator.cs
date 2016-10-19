@@ -57,29 +57,22 @@ namespace Xatzipe.BatchEnumerable
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
         /// <param name="response"></param>
         /// <param name="order"></param>
         /// <param name="filter"></param>
         /// <param name="batchSize"></param>
         /// <exception cref="ArgumentNullException">if items or selectedResponse are null</exception>"
 		public AbstractBatchEnumerator (
-            IQueryable<TModel> items,
             Expression<Func<TModel, TResult>> response,
             Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null,
             Expression<Func<TModel, bool>> filter = null,
             int batchSize = 10
         )
         {
-            if (null == items) {
-                throw new ArgumentNullException(nameof(items), "Items cannot be empty");
-            }
-
             if (null == response) {
                 throw new ArgumentNullException(nameof(response), "Selected Response cannot be empty");
             }
             CurrentBatchIndex = 0;
-            Items = items;
             Order = order;
             Response = response;
             Filter = filter;

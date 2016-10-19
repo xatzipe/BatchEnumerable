@@ -12,7 +12,6 @@ namespace Xatzipe.BatchEnumerable.Tests
     [TestFixture]
     public class BatchEnumerableTests
     {
-
         public int[] ItemsList = new[] {
             1, 2, 3, 4, 5,
             6, 7, 8, 9, 10,
@@ -37,7 +36,6 @@ namespace Xatzipe.BatchEnumerable.Tests
         [Test]
         public void TestBatchEnumerableReturnsCorrectNumber ()
         {
-
             var batchEnumerable = new BatchEnumerable<int, int>(
                 ItemsList.AsQueryable(),
                 i => i,
@@ -75,6 +73,35 @@ namespace Xatzipe.BatchEnumerable.Tests
         }
 
         [Test]
+        public void TestBatchEnumerableReturnsCorrectValuesUponMultipleIterations ()
+        {
+            var batchEnumerable = new BatchEnumerable<int, int>(
+                ItemsList.AsQueryable(),
+                i => i,
+                null,
+                null,
+                5
+            );
+            for (var j = 0; j < 4; j++) {
+                Assert.AreEqual(5, batchEnumerable.Count());
+                var count = 0;
+                foreach (var items in batchEnumerable) {
+
+                    var i = new[] {
+                    (count * 5) + 1,
+                    (count * 5) + 2,
+                    (count * 5) + 3,
+                    (count * 5) + 4,
+                    (count * 5) + 5,
+                };
+                    Assert.AreEqual(i, items);
+                    count++;
+                    Assert.AreEqual(count, batchEnumerable.BatchNumber);
+                }
+            }
+        }
+
+        [Test]
         public void TestBatchEnumerableReturnsCorrectValuesWithBaseEnumeratorIteration ()
         {
             var batchEnumerable = new BatchEnumerable<int, int>(
@@ -106,6 +133,39 @@ namespace Xatzipe.BatchEnumerable.Tests
         }
 
         [Test]
+        public void TestBatchEnumerableReturnsCorrectValuesWithBaseEnumeratorMultipleIterations ()
+        {
+            var batchEnumerable = new BatchEnumerable<int, int>(
+                ItemsList.AsQueryable(),
+                i => i,
+                null,
+                null,
+                5
+            );
+
+            for (var j = 0; j < 4; j++) {
+                Assert.AreEqual(5, batchEnumerable.Count());
+                var count = 0;
+                var baseEnumerable = (IEnumerable)batchEnumerable;
+                var enumerator = baseEnumerable.GetEnumerator();
+
+                while (enumerator.MoveNext()) {
+                    var i = new[] {
+                    (count * 5) + 1,
+                    (count * 5) + 2,
+                    (count * 5) + 3,
+                    (count * 5) + 4,
+                    (count * 5) + 5,
+                };
+                    Assert.AreEqual(i, enumerator.Current);
+                    count++;
+                    Assert.AreEqual(count, batchEnumerable.BatchNumber);
+                }
+                enumerator.Reset();
+            }
+        }
+
+        [Test]
         public void TestBatchEnumerableFiltersItems ()
         {
             var batchEnumerable = new BatchEnumerable<int, int>(
@@ -118,6 +178,23 @@ namespace Xatzipe.BatchEnumerable.Tests
 
             Assert.AreEqual(1, batchEnumerable.Count());
             Assert.AreEqual(new[] { 1, 2, 3 }, batchEnumerable.First());
+        }
+
+        [Test]
+        public void TestBatchEnumerableFiltersItemsWithMultipleCalls ()
+        {
+            var batchEnumerable = new BatchEnumerable<int, int>(
+                ItemsList.AsQueryable(),
+                i => i,
+                null,
+                i => i < 4,
+                5
+            );
+
+            for (var j = 0; j < 4; j++) {
+                Assert.AreEqual(1, batchEnumerable.Count());
+                Assert.AreEqual(new[] { 1, 2, 3 }, batchEnumerable.First());
+            }
         }
     }
 }

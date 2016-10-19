@@ -14,6 +14,7 @@ namespace Xatzipe.BatchEnumerable
     public class BatchEnumerator<TModel, TResult> : AbstractBatchEnumerator<TModel, TResult>, IBatchEnumerator<TModel, TResult>
     {
 
+        
         /// <summary>
         /// Batch enumerator contructor
         /// </summary>
@@ -29,13 +30,16 @@ namespace Xatzipe.BatchEnumerable
             Expression<Func<TModel, bool>> filter = null,
             int batchSize = 10
         ) : base(
-            items,
             response,
             order,
             filter,
             batchSize
         )
         {
+            if (null == items) {
+                throw new ArgumentNullException(nameof(items), "Items cannot be empty");
+            }
+            Items = items;
         }
 
         /// <summary>
