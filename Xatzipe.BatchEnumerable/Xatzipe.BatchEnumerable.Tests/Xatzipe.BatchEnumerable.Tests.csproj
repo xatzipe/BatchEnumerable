@@ -48,6 +48,7 @@
     <Compile Include="BatchEnumerableExtensionsWithSameTypeTests.cs" />
     <Compile Include="BatchEnumerableTests.cs" />
     <Compile Include="BatchEnumeratorTests.cs" />
+    <Compile Include="Multiple\MultipleBatchEnumerableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

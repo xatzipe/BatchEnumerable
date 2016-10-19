@@ -48,6 +48,10 @@
     <Compile Include="Enumerable.cs" />
     <Compile Include="IBatchEnumerable.cs" />
     <Compile Include="IBatchEnumerator.cs" />
+    <Compile Include="Multiple\AbstractMultipleBatchEnumerator.cs" />
+    <Compile Include="Multiple\IMultipleBatchEnumerable.cs" />
+    <Compile Include="Multiple\IMultipleBatchEnumerator.cs" />
+    <Compile Include="Multiple\MultipleBatchEnumerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
