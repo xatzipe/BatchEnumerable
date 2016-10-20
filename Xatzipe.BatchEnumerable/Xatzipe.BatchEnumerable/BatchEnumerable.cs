@@ -22,42 +22,33 @@ namespace Xatzipe.BatchEnumerable
         /// <param name="response"></param>
         /// <param name="order"></param>
         /// <param name="filter"></param>
-        /// <param name="pageSize"></param>
+        /// <param name="batchSize"></param>
         public BatchEnumerable (
             IQueryable<TModel> items,
             Expression<Func<TModel, TResult>> response,
             Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null,
             Expression<Func<TModel, bool>> filter = null,
-            int pageSize = 10
+            int batchSize = 10
         ) : base(
-            items,
             response,
             order,
             filter,
-            pageSize
+            batchSize
         )
         {
+            if (null == items) {
+                throw new ArgumentNullException("Items cannot be empty");
+            }
+            Items = items;
         }
 
         /// <summary>
         /// abstract SetEnumeration Implementation
         /// </summary>
         /// <param name="enumerator"></param>
-        /// <param name="items"></param>
-        /// <param name="response"></param>
-        /// <param name="order"></param>
-        /// <param name="filter"></param>
-        /// <param name="batchSize"></param>
-        protected override void SetEnumerator (
-            out IBatchEnumerator<TResult> enumerator,
-            IQueryable<TModel> items,
-            Expression<Func<TModel, TResult>> response,
-            Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null,
-            Expression<Func<TModel, bool>> filter = null,
-            int batchSize = 10
-            )
+        protected override void SetEnumerator (out IBatchEnumerator<TResult> enumerator)
         {
-            enumerator = new BatchEnumerator<TModel, TResult>(items, response, order, filter, batchSize);
+            enumerator = new BatchEnumerator<TModel, TResult>(Items, Response, Order, Filter, BatchSizeLocal);
         }
     }
 
@@ -72,7 +63,6 @@ namespace Xatzipe.BatchEnumerable
         /// BatchEnumerable contructor
         /// </summary>
         /// <param name="items"></param>
-        /// <param name="response"></param>
         /// <param name="order"></param>
         /// <param name="filter"></param>
         /// <param name="pageSize"></param>
@@ -82,34 +72,25 @@ namespace Xatzipe.BatchEnumerable
             Expression<Func<TModel, bool>> filter = null,
             int pageSize = 10
         ) : base(
-            items,
             r => r,
             order,
             filter,
             pageSize
         )
         {
+            if (null == items) {
+                throw new ArgumentNullException("Items cannot be empty");
+            }
+            Items = items;
         }
 
         /// <summary>
         /// abstract SetEnumeration Implementation
         /// </summary>
         /// <param name="enumerator"></param>
-        /// <param name="items"></param>
-        /// <param name="response"></param>
-        /// <param name="order"></param>
-        /// <param name="filter"></param>
-        /// <param name="batchSize"></param>
-        protected override void SetEnumerator (
-            out IBatchEnumerator<TModel> enumerator,
-            IQueryable<TModel> items,
-            Expression<Func<TModel, TModel>> response,
-            Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null,
-            Expression<Func<TModel, bool>> filter = null,
-            int batchSize = 10
-            )
+        protected override void SetEnumerator (out IBatchEnumerator<TModel> enumerator)
         {
-            enumerator = new BatchEnumerator<TModel>(items, response, order, filter, batchSize);
+            enumerator = new BatchEnumerator<TModel>(Items, Response, Order, Filter, BatchSizeLocal);
         }
     }
 }

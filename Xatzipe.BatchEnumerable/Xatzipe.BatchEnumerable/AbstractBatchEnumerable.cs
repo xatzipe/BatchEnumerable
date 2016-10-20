@@ -42,58 +42,48 @@ namespace Xatzipe.BatchEnumerable
 		protected Func<IQueryable<TModel>, IOrderedQueryable<TModel>> Order;
 
         /// <summary>
+        /// 
+        /// </summary>
+        protected int BatchSizeLocal;
+
+        /// <summary>
         /// AbstractBatchEnumerable  constructor
         /// </summary>
-        /// <param name="items"></param>
         /// <param name="response"></param>
         /// <param name="order"></param>
         /// <param name="filter"></param>
         /// <param name="batchSize"></param>
         public AbstractBatchEnumerable (
-            IQueryable<TModel> items,
             Expression<Func<TModel, TResult>> response,
             Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null,
             Expression<Func<TModel, bool>> filter = null,
             int batchSize = 10
         )
         {
-            Items = items;
             Response = response;
             Order = order;
             Filter = filter;
-            SetEnumerator(out Enumerator, items, response, order, filter, batchSize);
+            BatchSizeLocal = batchSize;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="enumerator"></param>
-        /// <param name="items"></param>
-        /// <param name="response"></param>
-        /// <param name="order"></param>
-        /// <param name="filter"></param>
-        /// <param name="batchSize"></param>
-        protected abstract void SetEnumerator (
-            out IBatchEnumerator<TResult> enumerator,
-            IQueryable<TModel> items,
-            Expression<Func<TModel, TResult>> response,
-            Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null,
-            Expression<Func<TModel, bool>> filter = null,
-            int batchSize = 10
-        );
+        protected abstract void SetEnumerator (out IBatchEnumerator<TResult> enumerator);
 
         /// <summary>
         /// returns the current batch number 
         /// </summary>
         public int BatchNumber {
-            get { return Enumerator.BatchNumber; }
+            get { return ((IBatchEnumerator<TResult>)GetEnumerator()).BatchNumber; }
         }
 
         /// <summary>
         /// returns the size of the batch
         /// </summary>
         public int BatchSize {
-            get { return Enumerator.BatchSize; }
+            get { return ((IBatchEnumerator<TResult>)GetEnumerator()).BatchSize; }
         }
 
         /// <summary>
@@ -102,8 +92,8 @@ namespace Xatzipe.BatchEnumerable
         /// <returns></returns>
         public IEnumerator<IEnumerable<TResult>> GetEnumerator ()
         {
-            if (Enumerator.Disposed) {
-                SetEnumerator(out Enumerator, Items, Response, Order, Filter, BatchSize);
+            if (null == Enumerator || true == Enumerator.Disposed) {
+                SetEnumerator(out Enumerator);
             }
             return Enumerator;
         }
