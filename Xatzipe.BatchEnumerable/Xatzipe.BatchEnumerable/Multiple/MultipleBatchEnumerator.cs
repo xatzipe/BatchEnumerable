@@ -110,4 +110,36 @@ namespace Xatzipe.BatchEnumerable.Multiple
             base.Dispose(disposing);
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TModel"></typeparam>
+    public class MultipleBatchEnumerator<TModel> : MultipleBatchEnumerator<TModel, TModel>, IMultipleBatchEnumerator<TModel>
+    {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemList"></param>
+        /// <param name="response"></param>
+        /// <param name="order"></param>
+        /// <param name="filter"></param>
+        /// <param name="batchSize"></param>
+        public MultipleBatchEnumerator (
+            IEnumerable<IQueryable<TModel>> itemList, 
+            Expression<Func<TModel, TModel>> response, 
+            Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null, 
+            Expression<Func<TModel, bool>> filter = null, 
+            int batchSize = 10
+        ) : base(
+            itemList, 
+            r => r, 
+            order, 
+            filter, 
+            batchSize
+        )
+        {
+        }
+    }
 }
