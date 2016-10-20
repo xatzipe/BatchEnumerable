@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBatchEnumerable.cs" />
+    <Compile Include="Aggregate\BatchEnumeratorAggregate.cs" />
+    <Compile Include="Aggregate\IBatchEnumerableAggregate.cs" />
+    <Compile Include="Aggregate\IBatchEnumeratorAggregate.cs" />
     <Compile Include="BatchEnumerable.cs" />
     <Compile Include="AbstractBatchEnumerator.cs" />
     <Compile Include="BatchEnumerator.cs" />
