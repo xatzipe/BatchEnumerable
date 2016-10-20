@@ -39,13 +39,11 @@ namespace Xatzipe.BatchEnumerable.Multiple
         /// <summary>
         /// AbstractMultipleBatchEnumerator contructor
         /// </summary>
-        /// <param name="itemList"></param>
         /// <param name="response"></param>
         /// <param name="order"></param>
         /// <param name="filter"></param>
         /// <param name="batchSize"></param>
         public AbstractMultipleBatchEnumerator (
-            IEnumerable<IQueryable<TModel>> itemList,
             Expression<Func<TModel, TResult>> response,
             Func<IQueryable<TModel>, IOrderedQueryable<TModel>> order = null,
             Expression<Func<TModel, bool>> filter = null,
@@ -57,15 +55,6 @@ namespace Xatzipe.BatchEnumerable.Multiple
             batchSize
         )
         {
-            if (null == itemList) {
-                throw new ArgumentNullException(nameof(itemList), "Items list cannot be empty");
-            }
-
-            if (0 == itemList.Count()) {
-                throw new ArgumentNullException(nameof(itemList), "Items list cannot be empty");
-            }
-
-            ItemList = itemList.ToArray();
         }
 
         /// <summary>

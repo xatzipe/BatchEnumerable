@@ -30,13 +30,21 @@ namespace Xatzipe.BatchEnumerable.Multiple
             Expression<Func<TModel, bool>> filter = null,
             int batchSize = 10
         ) : base(
-            itemList,
             response,
             order,
             filter,
             batchSize
         )
         {
+            if (null == itemList) {
+                throw new ArgumentNullException(nameof(itemList), "Items list cannot be empty");
+            }
+
+            if (0 == itemList.Count()) {
+                throw new ArgumentNullException(nameof(itemList), "Items list cannot be empty");
+            }
+
+            ItemList = itemList.ToArray();
         }
 
         /// <summary>
@@ -78,7 +86,6 @@ namespace Xatzipe.BatchEnumerable.Multiple
 
             if (count < BatchSizeLocal && AllItemsPassed) {
                 //return true one last time
-
                 CurrentItems = PreCurrentBatch;
                 PreCurrentBatch = System.Linq.Enumerable.Empty<TResult>().ToArray();
                 return true;
