@@ -22,6 +22,11 @@ namespace Xatzipe.BatchEnumerable
         /// <summary>
         /// 
         /// </summary>
+        protected int PaddingLocal;
+
+        /// <summary>
+        /// 
+        /// </summary>
 		protected int CurrentBatchIndex;
 
         /// <summary>
@@ -82,7 +87,17 @@ namespace Xatzipe.BatchEnumerable
         /// <summary>
         /// 
         /// </summary>
-        public int Padding { get; set; }
+        public int Padding {
+            get {
+                return PaddingLocal;
+            }
+            set {
+                if (CurrentBatchIndex > 0) {
+                    throw new ArgumentException("Padding cannot change value after iteration has started");
+                }
+                PaddingLocal = value;
+            }
+        }
 
         /// <summary>
         /// returns the current batch number 

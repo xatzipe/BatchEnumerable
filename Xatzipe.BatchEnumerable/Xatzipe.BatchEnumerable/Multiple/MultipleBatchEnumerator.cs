@@ -86,7 +86,7 @@ namespace Xatzipe.BatchEnumerable.Multiple
 
             CurrentListItem++;
             CurrentBatchNumberLocal = 1;
-            Padding = BatchSizeLocal - count;
+            PaddingLocal = BatchSizeLocal - count;
             return SetΝextBatch();
         }
 

@@ -156,7 +156,7 @@ namespace Xatzipe.BatchEnumerable.Tests
         }
 
         [Test]
-        public void TestPaddingSetGet ()
+        public void TestSetPaddingWithNoIteration ()
         {
             var en = new BatchEnumerator<int, int>(
                 Items.AsQueryable(),
@@ -167,6 +167,38 @@ namespace Xatzipe.BatchEnumerable.Tests
             );
             en.Padding = 6;
             Assert.AreEqual(6, en.Padding);
+        }
+
+        [Test]
+        public void TestSetPaddingWithNoIterationAfterReset ()
+        {
+            var en = new BatchEnumerator<int, int>(
+                Items.AsQueryable(),
+                q => q,
+                null,
+                null,
+                5
+            );
+            en.MoveNext();
+            en.Reset();
+            en.Padding = 6;
+            Assert.AreEqual(6, en.Padding);
+        }
+
+        [Test]
+        public void TestSetPaddingInsideIterationThrowsException ()
+        {
+            Assert.Throws<ArgumentException>(() => {
+                var en = new BatchEnumerator<int, int>(
+                Items.AsQueryable(),
+                q => q,
+                null,
+                null,
+                5
+            );
+                en.MoveNext();
+                en.Padding = 6;
+            });
         }
 
         [Test]
@@ -184,7 +216,7 @@ namespace Xatzipe.BatchEnumerable.Tests
         }
 
         [Test]
-        public void TestEnumeratorThrowsExceptionWithNullResponseArgument()
+        public void TestEnumeratorThrowsExceptionWithNullResponseArgument ()
         {
 
             Assert.Throws<ArgumentNullException>(() => {
