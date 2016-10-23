@@ -22,11 +22,6 @@ namespace Xatzipe.BatchEnumerable.Multiple
         protected IQueryable<TModel>[] ItemList;
 
         /// <summary>
-        /// tmp storage durring CurrentBatch creation
-        /// </summary>
-        protected IEnumerable<TResult> PreCurrentBatch = System.Linq.Enumerable.Empty<TResult>();
-
-        /// <summary>
         /// AbstractMultipleBatchEnumerable contructor
         /// </summary>
         /// <param name="response"></param>

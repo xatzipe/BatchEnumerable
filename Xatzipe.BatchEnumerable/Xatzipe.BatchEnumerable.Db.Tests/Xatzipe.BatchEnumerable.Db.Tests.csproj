@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbBatchEnumerableAggregateTest.cs" />
     <Compile Include="DbContextBatchEnumerableExtensionsWithDifferentTypesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData\TestChild.cs" />

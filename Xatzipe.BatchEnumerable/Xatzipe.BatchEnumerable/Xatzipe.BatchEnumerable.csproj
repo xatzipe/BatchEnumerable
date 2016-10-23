@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractBaseBatchEnumerable.cs" />
     <Compile Include="AbstractBatchEnumerable.cs" />
+    <Compile Include="Aggregate\BatchEnumerableAggregate.cs" />
     <Compile Include="Aggregate\BatchEnumeratorAggregate.cs" />
+    <Compile Include="Aggregate\Enumerable.cs" />
     <Compile Include="Aggregate\IBatchEnumerableAggregate.cs" />
     <Compile Include="Aggregate\IBatchEnumeratorAggregate.cs" />
     <Compile Include="BatchEnumerable.cs" />
