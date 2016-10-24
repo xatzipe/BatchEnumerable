@@ -12,7 +12,6 @@ namespace Xatzipe.BatchEnumerable.Db.Tests
     public class DbBatchEnumerableAggregateTest
     {
         public TestDbContext Context;
-        //public int TableSize = 1000000;
 
         [OneTimeSetUp]
         public void OneTimeSetUp ()
@@ -21,8 +20,6 @@ namespace Xatzipe.BatchEnumerable.Db.Tests
             Seed(Context);
 
         }
-
-
 
         [OneTimeTearDown]
         public void OneTimeTearDown ()

@@ -196,5 +196,33 @@ namespace Xatzipe.BatchEnumerable.Tests
                 Assert.AreEqual(new[] { 1, 2, 3 }, batchEnumerable.First());
             }
         }
+
+
+        [Test]
+        public void TestBatchEnumerableWithDifferentTypesThrowsExceptionUponNullItems ()
+        {
+            Assert.Throws<ArgumentNullException>(() => {
+                var batchEnumerable = new BatchEnumerable<int, int>(
+                    null,
+                    i => i,
+                    null,
+                    i => i < 4,
+                    5
+                );
+            });
+        }
+
+        [Test]
+        public void TestBatchEnumerableThrowsExceptionUponNullItems ()
+        {
+            Assert.Throws<ArgumentNullException>(() => {
+                var batchEnumerable = new BatchEnumerable<int>(
+                    null,
+                    null,
+                    i => i < 4,
+                    5
+                );
+            });
+        }
     }
 }
