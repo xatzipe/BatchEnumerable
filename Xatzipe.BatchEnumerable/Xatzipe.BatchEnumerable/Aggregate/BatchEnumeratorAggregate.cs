@@ -102,12 +102,9 @@ namespace Xatzipe.BatchEnumerable.Aggregate
         /// 
         /// </summary>
         public int Padding {
-            get {
-                return PaddingLocal;
-            }
-
+            get { return PaddingLocal; }
             set {
-                if(0 < CurrentIndex) {
+                if (0 < CurrentIndex) {
                     throw new ArgumentException("Cannot set Padding after iteration has started");
                 }
                 PaddingLocal = value;

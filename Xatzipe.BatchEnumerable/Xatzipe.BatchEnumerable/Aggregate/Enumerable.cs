@@ -21,10 +21,10 @@ namespace Xatzipe.BatchEnumerable.Aggregate
         /// <param name="items"></param>
         /// <returns></returns>
         public static IBatchEnumerable<TResult> AggregateBatch<TModel, TResult> (
-            IEnumerable<IBatchEnumerable<TModel, TResult>> items
+            params IBatchEnumerable<TModel, TResult>[] items
         )
         {
-            return new BatchEnumerableAggregate<TResult>(items.ToArray());
+            return new BatchEnumerableAggregate<TResult>(items);
         }
 
 
@@ -35,10 +35,10 @@ namespace Xatzipe.BatchEnumerable.Aggregate
         /// <param name="items"></param>
         /// <returns></returns>
         public static IBatchEnumerable<TModel> AggregateBatch<TModel> (
-            IEnumerable<IBatchEnumerable<TModel>> items
+            params IBatchEnumerable<TModel>[] items
         )
         {
-            return new BatchEnumerableAggregate<TModel>(items.ToArray());
+            return new BatchEnumerableAggregate<TModel>(items);
         }
 
     }

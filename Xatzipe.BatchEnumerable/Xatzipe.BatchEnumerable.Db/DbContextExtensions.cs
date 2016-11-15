@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Xatzipe.BatchEnumerable.Db
 {
+    /// <summary>
+    /// Extention methods for DbContext
+    /// </summary>
     public static class DbContextExtensions
     {
 
@@ -37,7 +40,6 @@ namespace Xatzipe.BatchEnumerable.Db
         /// </summary>
         /// <param name="cntx">Cntx.</param>
         /// <param name="orderBy">Order by</param>
-        /// <param name="selectedColumns">Selected columns</param>
         /// <param name="batchSize">Batch size</param>
         /// <param name="filter">Filter</param>
         /// <typeparam name="TEntity">The 1st type parameter</typeparam>
