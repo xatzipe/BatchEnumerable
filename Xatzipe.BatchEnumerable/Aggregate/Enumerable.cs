@@ -12,22 +12,6 @@ namespace Xatzipe.BatchEnumerable.Aggregate
     /// </summary>
     public static class Enumerable
     {
-
-        /// <summary>
-        /// iterates all items in batches. each item has its own batch size
-        /// </summary>
-        /// <typeparam name="TModel"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        public static IBatchEnumerable<TResult> AggregateBatch<TModel, TResult> (
-            params IBatchEnumerable<TModel, TResult>[] items
-        )
-        {
-            return new BatchEnumerableAggregate<TResult>(items);
-        }
-
-
         /// <summary>
         /// iterates all items in batches. each item has its own batch size
         /// </summary>
