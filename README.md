@@ -1,5 +1,7 @@
 # BatchEnumerable
 
+AppVeyor: [![AppVeyor](https://ci.appveyor.com/api/projects/status/ou790a8fl3gqtmp7?svg=true)](https://ci.appveyor.com/project/xatzipe/batchenumerable)
+
 Batch Enumerable is a library that enhances LINQ to iterate enumerables in batches.
 
 It includes:
