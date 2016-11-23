@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Xatzipe.BatchEnumerable.Db")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Xtzp.Linq.BatchEnumerable.Db")]
+[assembly: AssemblyDescription("Linq extensions that helps iterate db queries in batches")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Xatzipe.BatchEnumerable.Db")]
+[assembly: AssemblyProduct("Xtzp.Linq.BatchEnumerable.Db")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
