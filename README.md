@@ -1,4 +1,4 @@
-BatchEnumerable
+# BatchEnumerable
 
 AppVeyor: [![AppVeyor](https://ci.appveyor.com/api/projects/status/ou790a8fl3gqtmp7?svg=true)](https://ci.appveyor.com/project/xatzipe/batchenumerable)
 
