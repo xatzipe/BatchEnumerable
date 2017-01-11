@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Theodore Chatziperis(xatzipe)</authors>
+    <owners>Theodore Chatziperis(xatzipe)</owners>
+    <licenseUrl>https://github.com/xatzipe/BatchEnumerable/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/xatzipe/BatchEnumerable</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Linq extensions that helps iterate enumerables in batches</description>
+    <releaseNotes>First Release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Linq Batch Enumerable LinqExtensions</tags>
+  </metadata>
+</package>
